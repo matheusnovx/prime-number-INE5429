@@ -1,0 +1,37 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Distribuições
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Ambiente virtual
+venv/
+.env
+.env.local
+.env.production
+.env.test
+
+# Configurações do PyCharm
+.idea/
+
+# Arquivos de configuração do sistema
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de backup
+*~
+*.bak
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Outros
+*.DS_Store
+Thumbs.db
