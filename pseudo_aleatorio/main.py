@@ -5,7 +5,7 @@ from ParkMiller import *
 from random import randint
 
 
-def lcgGenerator(seed):
+def lcg_generator(seed):
     a = 1664525
     c = 1013904223
     m = 2 ** lenght
@@ -15,13 +15,13 @@ def lcgGenerator(seed):
     number = lcg.next()
     endTimes.append(time())
 
-    print("Length: {} bits".format(lenght))
+    print("Lenght: ", number.bit_length(), "bits.")
     print("Seed: {}".format(seed))
     print("Numero gerado: {}".format(number))
     print("Tempo de execução: {:.8f} segundos.\n".format(endTimes[-1] - startTimes[-1]))
 
 
-def pmGenerator(seed):
+def pm_generator(seed):
     a = 48271
     m = 2 ** lenght
     pm = ParkMiller(seed, a, m)
@@ -45,10 +45,12 @@ if __name__ == "__main__":
 
     print("Linear Congruential Generator: \n")
     for lenght in bitLenght:
-        lcgGenerator(seeds[bitLenght.index(lenght)])
+        lcg_generator(seeds[bitLenght.index(lenght)])
+
+    print("\n--------------------------------------------------------------------------------\n")
 
     print("Park Miller Generator: \n")
     for lenght in bitLenght:
-        pmGenerator(seeds[bitLenght.index(lenght)])
+        pm_generator(seeds[bitLenght.index(lenght)])
 
     print("Done!")
