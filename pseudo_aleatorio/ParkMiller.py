@@ -10,14 +10,38 @@
     "In 1988, Park and Miller[3] suggested a Lehmer RNG with particular parameters m = 231 − 1 = 2,147,483,647 (a Mersenne prime M31) and a = 75 = 16,807 (a primitive root modulo M31), now known as MINSTD."
     But, m is being used as 2 ** lenght, where lenght is the number of bits.
 """
+from time import time_ns
 
 
 class ParkMiller:
-    def __init__(self, seed: int, m: int, a: int = 16807):
-        self.seed = seed
+    def __init__(self, m: int, a: int = 16807):
         self.a = a
-        self.m = m
+        self.m = m  # Módulo
 
-    def next(self) -> int:
-        self.seed = (self.a * self.seed) % self.m
-        return self.seed
+    def pm(self, n_bits, seed=None):
+        # Máscara para limitar os bits gerados
+        mask = (1 << n_bits) - 1
+        m, a = self.m, self.a
+
+        # Define o seed com base no tempo atual se não for fornecido
+        if seed is None:
+            seed = time_ns() % m
+
+        number_generated = (a * seed) % m
+        result = []
+        bits_collected = 0
+
+        # Gera números até alcançar a quantidade desejada de bits
+        while bits_collected < n_bits:
+            number_generated = (a * number_generated) % m
+            new_generated = number_generated & ((1 << 32) - 1)
+
+            result.append(new_generated)
+            bits_collected += 32
+
+        # Combina os números gerados em um único resultado
+        final_result = 0
+        for part in result:
+            final_result = (final_result << 32) | part
+
+        return final_result & mask
