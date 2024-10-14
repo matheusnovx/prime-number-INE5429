@@ -13,7 +13,7 @@ from time import time_ns
 
 
 class LinearCongruentialGenerator:
-    def __init__(self, m: int, a: int = 1664525, c: int = 1013904223):
+    def __init__(self, m: int = 2 ** 32, a: int = 1664525, c: int = 1013904223):
         self.m = m  # Modulo
         self.a = a
         self.c = c
