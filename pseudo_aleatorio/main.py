@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     # for lenght in bit_lenght:
     #     times = []
-    #     for _ in range(1000):
+    #     for _ in range(1_000_000):
     #         lcg = LinearCongruentialGenerator()
     #         start = time()
     #         number_generated = lcg.lcg(lenght)
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     #
     for lenght in bit_lenght:
         times = []
-        for _ in range(1000):
+        for _ in range(1_000_000):
             pm = ParkMiller()
             start = time()
             number_generated = pm.pm(lenght)
